@@ -1,0 +1,8 @@
+[
+{
+  "directory": "D:/c/vsc_pro/express_project/build",
+  "command": "C:\\PROGRA~1\\mingw64\\bin\\G__~1.EXE  @CMakeFiles/express_system.dir/includes_CXX.rsp -g -o CMakeFiles\\express_system.dir\\src\\main\\express.cpp.obj -c D:\\c\\vsc_pro\\express_project\\src\\main\\express.cpp",
+  "file": "D:/c/vsc_pro/express_project/src/main/express.cpp",
+  "output": "CMakeFiles/express_system.dir/src/main/express.cpp.obj"
+}
+]
