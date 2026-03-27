@@ -37,19 +37,18 @@ void User::receive_packet() {
     if(packets_count==0)return;
     int select_counts=0;
     while(select_counts<packets_count){
-        cout<<"Please select one or more packet to receive(just input packet id,separate by space): ";
-        int select_packet_id;
+        cout<<"Please select one or more packet to receive(just input packet id,separate by space): "<<endl;
         vector<int> selected_packets=read_packets();
         for(int i=0;i<selected_packets.size();i++){
             int select_packet_id=selected_packets[i];
             bool found = false;
-            for(auto pkt : packets) {
-                if(pkt.id == select_packet_id) {
+            for(int i=0;i<all_packets_count;i++) {
+                if(packets[i].id == select_packet_id) {
                     select_counts++;
-                    pkt.status=RECEIVED;
+                    packets[i].status=RECEIVED;
                     found = true;
-                    pkt.receive_time=get_time();
-                    cout<<pkt.receive_time<<" "<<"receive packet from "<<pkt.sender<<" success"<<endl;
+                    packets[i].receive_time=get_time();
+                    cout<<packets[i].receive_time<<" "<<"receive packet from "<<packets[i].sender<<" success"<<endl;
                     break;
                 }
             }
@@ -107,8 +106,16 @@ void User::send_packet(){
     all_packets_count++;
     account.balance-=5;
     cout<<"send packet success"<<endl;
-    cout<<packets[all_packets_count-1].id<<endl;
 }   
 string User::get_name(){
     return account.name;
+}
+void User::logout(){
+    for(int i=0;i<all_accounts_count;i++){
+        if(accounts[i].name == account.name){
+            accounts[i]=account;
+            break;
+        }
+    }
+    cout<<"logout success"<<endl;
 }

@@ -59,5 +59,5 @@ void signup();
 LoginStatus login(Account &user);
 bool find_user(string name,Account& user);
 void sys_init();
-int logout();
+void save_data();
 #endif

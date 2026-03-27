@@ -15,6 +15,7 @@ class User{
         void send_packet();
         void change_password();
         void recharge();
+        void logout();
         string get_name();
 };
 string Userloop(User user);

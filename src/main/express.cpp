@@ -10,24 +10,25 @@ vector<int> read_packets() {
     vector<int> selected_packets;
     string input;
     int num=0;
+    while(getchar()!='\n');
     getline(cin, input);
-    char ch=input[0];
-    while(ch!='\n'){
-        while(ch==' ')ch++;
-        while(ch>='0'&&ch<='9'){
-            num=num*10+(ch-'0');
-            ch++;
+    int i=0;
+    while(i<input.size()){
+        while(input[i]==' ')i++;
+        while(input[i]>='0'&&input[i]<='9'){
+            num=num*10+(input[i]-'0');
+            i++;
         }
         selected_packets.push_back(num);
         num=0;
-        while(ch!=' ')ch++;
+        while(input[i]!=' ')i++;
     }
     return selected_packets;
 }
 string get_time() {
     time_t now = time(0);
     struct tm* t = localtime(&now);
-    return to_string(t->tm_year + 1900) + "-" + to_string(t->tm_mon + 1) + "-" + to_string(t->tm_mday) + " " + to_string(t->tm_hour) + ":" + to_string(t->tm_min) + ":" + to_string(t->tm_sec);
+    return to_string(t->tm_year + 1900) + "-" + to_string(t->tm_mon + 1) + "-" + to_string(t->tm_mday) + "_" + to_string(t->tm_hour) + ":" + to_string(t->tm_min) + ":" + to_string(t->tm_sec);
 }
 void signup() {
     Account new_user;
@@ -68,7 +69,7 @@ string Userloop(User user){
     cout<<"Welcome "<<user.get_name()<<"!"<<endl;
     cout<<"1.Query balance"<<endl;
     cout<<"2.Query packet"<<endl;
-    cout<<"3.Query receive packet"<<endl;
+    cout<<"3.receive packet"<<endl;
     cout<<"4.Send packet"<<endl;
     cout<<"5.Change password"<<endl;
     cout<<"6.Recharge"<<endl;
@@ -85,7 +86,7 @@ string Userloop(User user){
                 user.query_packet();
                 break;
             case 3:
-                user.query_receive_packet();
+                user.receive_packet();
                 break;
             case 4:
                 user.send_packet();
@@ -97,7 +98,7 @@ string Userloop(User user){
                 user.recharge();
                 break;
             case 7:
-                logout();
+                user.logout();
                 break;
             default:
                 cout<<"Invalid choice!"<<endl;
@@ -121,7 +122,6 @@ int main() {
             case User_LOGIN_SUCCESS:
                 cout<<"Login success!"<<endl;
                 input=Userloop(User(user));
-                cout<<"Logout success!"<<endl;
                 break;
             case Admin_LOGIN_SUCCESS:
                 cout<<"Login success as admin!"<<endl;
@@ -146,5 +146,6 @@ int main() {
                 break;
         }
     }
+    save_data();
     return 0;
 }
