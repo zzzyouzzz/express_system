@@ -128,6 +128,54 @@ express_system/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\express_system.dir\build.make CMakeFiles/express_system.dir/build
 .PHONY : express_system/fast
 
+src/main/User.obj: src/main/User.cpp.obj
+.PHONY : src/main/User.obj
+
+# target to build an object file
+src/main/User.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\express_system.dir\build.make CMakeFiles/express_system.dir/src/main/User.cpp.obj
+.PHONY : src/main/User.cpp.obj
+
+src/main/User.i: src/main/User.cpp.i
+.PHONY : src/main/User.i
+
+# target to preprocess a source file
+src/main/User.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\express_system.dir\build.make CMakeFiles/express_system.dir/src/main/User.cpp.i
+.PHONY : src/main/User.cpp.i
+
+src/main/User.s: src/main/User.cpp.s
+.PHONY : src/main/User.s
+
+# target to generate assembly for a file
+src/main/User.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\express_system.dir\build.make CMakeFiles/express_system.dir/src/main/User.cpp.s
+.PHONY : src/main/User.cpp.s
+
+src/main/admin.obj: src/main/admin.cpp.obj
+.PHONY : src/main/admin.obj
+
+# target to build an object file
+src/main/admin.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\express_system.dir\build.make CMakeFiles/express_system.dir/src/main/admin.cpp.obj
+.PHONY : src/main/admin.cpp.obj
+
+src/main/admin.i: src/main/admin.cpp.i
+.PHONY : src/main/admin.i
+
+# target to preprocess a source file
+src/main/admin.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\express_system.dir\build.make CMakeFiles/express_system.dir/src/main/admin.cpp.i
+.PHONY : src/main/admin.cpp.i
+
+src/main/admin.s: src/main/admin.cpp.s
+.PHONY : src/main/admin.s
+
+# target to generate assembly for a file
+src/main/admin.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\express_system.dir\build.make CMakeFiles/express_system.dir/src/main/admin.cpp.s
+.PHONY : src/main/admin.cpp.s
+
 src/main/express.obj: src/main/express.cpp.obj
 .PHONY : src/main/express.obj
 
@@ -152,6 +200,30 @@ src/main/express.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\express_system.dir\build.make CMakeFiles/express_system.dir/src/main/express.cpp.s
 .PHONY : src/main/express.cpp.s
 
+src/main/file_io.obj: src/main/file_io.cpp.obj
+.PHONY : src/main/file_io.obj
+
+# target to build an object file
+src/main/file_io.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\express_system.dir\build.make CMakeFiles/express_system.dir/src/main/file_io.cpp.obj
+.PHONY : src/main/file_io.cpp.obj
+
+src/main/file_io.i: src/main/file_io.cpp.i
+.PHONY : src/main/file_io.i
+
+# target to preprocess a source file
+src/main/file_io.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\express_system.dir\build.make CMakeFiles/express_system.dir/src/main/file_io.cpp.i
+.PHONY : src/main/file_io.cpp.i
+
+src/main/file_io.s: src/main/file_io.cpp.s
+.PHONY : src/main/file_io.s
+
+# target to generate assembly for a file
+src/main/file_io.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\express_system.dir\build.make CMakeFiles/express_system.dir/src/main/file_io.cpp.s
+.PHONY : src/main/file_io.cpp.s
+
 # Help Target
 help:
 	@echo The following are some of the valid targets for this Makefile:
@@ -161,9 +233,18 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... express_system
+	@echo ... src/main/User.obj
+	@echo ... src/main/User.i
+	@echo ... src/main/User.s
+	@echo ... src/main/admin.obj
+	@echo ... src/main/admin.i
+	@echo ... src/main/admin.s
 	@echo ... src/main/express.obj
 	@echo ... src/main/express.i
 	@echo ... src/main/express.s
+	@echo ... src/main/file_io.obj
+	@echo ... src/main/file_io.i
+	@echo ... src/main/file_io.s
 .PHONY : help
 
 
