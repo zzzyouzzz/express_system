@@ -21,8 +21,8 @@ enum PacketStatus {
     SENT,
     RECEIVED
 };
-typedef struct Account {
-    int id;
+struct Account {
+    string username;
     string name;
     string phone;
     string password;
@@ -30,23 +30,23 @@ typedef struct Account {
     string address;
     AccountType type;
     Account() :type(USER) {}
-    Account(int id, string name, string phone, string password, int balance, string address) :id(id), name(name), phone(phone), password(password), balance(balance), address(address), type(USER) {}
-}Account;
-typedef struct packet{
-    int id;
+    Account(string username, string name, string phone, string password, int balance, string address) :username(username), name(name), phone(phone), password(password), balance(balance), address(address), type(USER) {}
+};
+struct Packet{
+    int tracking_number;
     string sender;
     string receiver;
     string send_time;
     string receive_time;
     PacketStatus status;
     string content;
-    packet(){}
-    packet(string sender, string receiver, string send_time, string receive_time, string content) :status(SENT), sender(sender), receiver(receiver), send_time(send_time), receive_time(receive_time), content(content) {}
-}Packet;
-class IAccountQuery {
+    Packet(){}
+    Packet(string sender, string receiver, string send_time, string receive_time, string content) :status(SENT), sender(sender), receiver(receiver), send_time(send_time), receive_time(receive_time), content(content) {}
+};
+class IPacketQuery {
 public:
-    virtual ~IAccountQuery() = default;
-    virtual Account query(int targetId) = 0;
+    virtual ~IPacketQuery() = default;
+    virtual void query_packet(int type=0,string value="") = 0;
 };
 extern vector<Account> accounts;
 extern vector<Packet> packets;
@@ -60,4 +60,5 @@ LoginStatus login(Account &user);
 bool find_user(string name,Account& user);
 void sys_init();
 void save_data();
+bool is_valid_username(string username);
 #endif

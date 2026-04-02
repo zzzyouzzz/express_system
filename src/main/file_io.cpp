@@ -8,7 +8,7 @@ void sys_init() {
             accounts.resize(all_accounts_count);
             for(int i=0;i<all_accounts_count;i++){
                 int type;
-                infile>>accounts[i].name>>accounts[i].phone>>accounts[i].password>>accounts[i].balance>>accounts[i].address>>type;
+                infile>>accounts[i].username>>accounts[i].name>>accounts[i].phone>>accounts[i].password>>accounts[i].balance>>accounts[i].address>>type;
                 accounts[i].type=static_cast<AccountType>(type);
             }
         } 
@@ -24,7 +24,7 @@ void sys_init() {
             packets.resize(all_packets_count);
             for(int i=0;i<all_packets_count;i++){
                 int staus;
-                infile2>>packets[i].id>>packets[i].sender>>packets[i].receiver>>packets[i].send_time>>packets[i].receive_time>>packets[i].content>>staus;
+                infile2>>packets[i].tracking_number>>packets[i].sender>>packets[i].receiver>>packets[i].send_time>>packets[i].receive_time>>packets[i].content>>staus;
                 packets[i].status=static_cast<PacketStatus>(staus);
             }
         } 
@@ -42,7 +42,7 @@ void save_data() {
     }
     outfile << all_accounts_count << endl;
     for (int i = 0;i < all_accounts_count;i++) {
-        outfile << accounts[i].name << endl << accounts[i].phone << endl << accounts[i].password << endl << accounts[i].balance << endl << accounts[i].address << endl << static_cast<int>(accounts[i].type)<<endl;
+        outfile << accounts[i].username << endl << accounts[i].name << endl << accounts[i].phone << endl << accounts[i].password << endl << accounts[i].balance << endl << accounts[i].address << endl << static_cast<int>(accounts[i].type)<<endl;
     }
     outfile.close();
     ofstream outfile2("../doc/packetdata.txt", ios::out);
@@ -52,7 +52,7 @@ void save_data() {
     }
     outfile2 << all_packets_count << endl;
     for (int i = 0;i < all_packets_count;i++) {
-        outfile2 << packets[i].id << endl << packets[i].sender << endl << packets[i].receiver << endl << packets[i].send_time << endl << packets[i].receive_time << endl << packets[i].content << endl << static_cast<int>(packets[i].status)<<endl;
+        outfile2 << packets[i].tracking_number << endl << packets[i].sender << endl << packets[i].receiver << endl << packets[i].send_time << endl << packets[i].receive_time << endl << packets[i].content << endl << static_cast<int>(packets[i].status)<<endl;
     }
     outfile2.close();
 }

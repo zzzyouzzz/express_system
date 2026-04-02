@@ -3,72 +3,117 @@ using namespace std;
 void User::query_balance() {
     cout<<"balance: "<<account.balance<<endl;
 }
-void User::query_packet() {
-    bool found = false;
-    for(auto pkt : packets) {
-        if(pkt.sender == account.name) {
-            found = true;
-            cout<<"sent time: "<<pkt.send_time<<" "<<"receiver: "<<pkt.receiver<<" "<<"status: "<<pkt.status<<" "<<"content: "<<pkt.content<<endl;
-        }
-        else if(pkt.receiver == account.name) {
-            found = true;
-            cout<<"received time: "<<pkt.receive_time<<" "<<"sender: "<<pkt.sender<<" "<<"status: "<<pkt.status<<" "<<"content: "<<pkt.content<<endl;
-        }
-    }
-    if(!found) {
-        cout<<"no sent or received packet"<<endl;
-    }
-}
-int User::query_receive_packet() {
-    int found = 0;
-    for(auto pkt : packets) {
-        if(pkt.receiver == account.name&&pkt.status == SENT) {
-            found++;
-            cout<<"packet id: "<<pkt.id<<" "<<"sent time: "<<pkt.send_time<<" "<<"receiver: "<<pkt.receiver<<" "<<"status: "<<pkt.status<<" "<<"content: "<<pkt.content<<endl;
-        }
-    }
-    if(!found) {
-        cout<<"no received packet"<<endl;
-    }
-    return found;
-}
-void User::receive_packet() {
-    int packets_count=query_receive_packet();
-    if(packets_count==0)return;
-    int select_counts=0;
-    while(select_counts<packets_count){
-        cout<<"Please select one or more packet to receive(just input packet id,separate by space): "<<endl;
-        vector<int> selected_packets=read_packets();
-        for(int i=0;i<selected_packets.size();i++){
-            int select_packet_id=selected_packets[i];
-            bool found = false;
-            for(int i=0;i<all_packets_count;i++) {
-                if(packets[i].id == select_packet_id) {
-                    select_counts++;
-                    packets[i].status=RECEIVED;
-                    found = true;
-                    packets[i].receive_time=get_time();
-                    cout<<packets[i].receive_time<<" "<<"receive packet from "<<packets[i].sender<<" success"<<endl;
-                    break;
+void User::query_packet(int type=0,string value="") {
+    switch(type){
+        case 0:
+            for(auto pkt : packets) {
+                if(pkt.sender != account.name && pkt.receiver != account.name) {
+                    continue;
+                }
+                cout<<"packet tracking number: "<<pkt.tracking_number<<" "<<"sender: "<<pkt.sender<<" "<<"receiver: "<<pkt.receiver<<" ";
+                cout<<"content: "<<pkt.content<<" "<<"sent time: "<<pkt.send_time<<" ";
+                cout<<"received time: "<<pkt.receive_time<<" "<<"status: "<<pkt.status<<endl;
+            }
+            break;
+        case 1:
+            for(auto pkt : packets) {
+                if(pkt.sender != account.name && pkt.receiver != account.name) {
+                    continue;
+                }
+                if(pkt.sender == value) {
+                    cout<<"packet tracking number: "<<pkt.tracking_number<<" "<<"sender: "<<pkt.sender<<" "<<"receiver: "<<pkt.receiver<<" ";
+                    cout<<"content: "<<pkt.content<<" "<<"sent time: "<<pkt.send_time<<" ";
+                    cout<<"received time: "<<pkt.receive_time<<" "<<"status: "<<pkt.status<<endl;
                 }
             }
-            if(!found) {
-                cout<<"error:packet id "<<select_packet_id<<" not found"<<endl;
+            break;
+        case 2:
+            for(auto pkt : packets) {
+                if(pkt.sender != account.name && pkt.receiver != account.name) {
+                    continue;
+                }
+                if(pkt.receiver == value) {
+                    cout<<"packet tracking number: "<<pkt.tracking_number<<" "<<"sender: "<<pkt.sender<<" "<<"receiver: "<<pkt.receiver<<" ";
+                    cout<<"content: "<<pkt.content<<" "<<"sent time: "<<pkt.send_time<<" ";
+                    cout<<"received time: "<<pkt.receive_time<<" "<<"status: "<<pkt.status<<endl;
+                }
             }
-        }
-        if(select_counts<packets_count){
-            cout<<"There are "<<packets_count-select_counts<<" more packet to receive"<<endl;
-            cout<<"Please input \"continue\" to receive packet OR input \"exit\" to finish"<<endl;
-            string input;
-            cin>>input;
-            if(input=="exit"){
+            break;
+        case 3:
+            for(auto pkt : packets) {
+                if(pkt.sender != account.name && pkt.receiver != account.name) {
+                    continue;
+                }
+                if(pkt.send_time == value) {
+                    cout<<"packet tracking number: "<<pkt.tracking_number<<" "<<"sender: "<<pkt.sender<<" "<<"receiver: "<<pkt.receiver<<" ";
+                    cout<<"content: "<<pkt.content<<" "<<"sent time: "<<pkt.send_time<<" ";
+                    cout<<"received time: "<<pkt.receive_time<<" "<<"status: "<<pkt.status<<endl;
+                }
+            }
+            break;
+        case 4:
+            for(auto pkt : packets) {
+                if(pkt.sender != account.name && pkt.receiver != account.name) {
+                    continue;
+                }
+                if(pkt.receive_time == value) {
+                    cout<<"packet tracking number: "<<pkt.tracking_number<<" "<<"sender: "<<pkt.sender<<" "<<"receiver: "<<pkt.receiver<<" ";
+                    cout<<"content: "<<pkt.content<<" "<<"sent time: "<<pkt.send_time<<" ";
+                    cout<<"received time: "<<pkt.receive_time<<" "<<"status: "<<pkt.status<<endl;
+                }
+            }
+            break;
+        case 5:{
+            int tn=stoi(value);
+            for(auto pkt : packets) {
+                if(pkt.sender != account.name && pkt.receiver != account.name) {
+                    continue;
+                }
+                if(pkt.tracking_number == tn) {
+                    cout<<"packet tracking number: "<<pkt.tracking_number<<" "<<"sender: "<<pkt.sender<<" "<<"receiver: "<<pkt.receiver<<" ";
+                    cout<<"content: "<<pkt.content<<" "<<"sent time: "<<pkt.send_time<<" ";
+                    cout<<"received time: "<<pkt.receive_time<<" "<<"status: "<<pkt.status<<endl;
+                }
+            }
+        }          
+        case 6:
+            for(auto pkt : packets) {
+                if(pkt.sender != account.name && pkt.receiver != account.name) {
+                    continue;
+                }
+                if(pkt.status == SENT&&pkt.receiver == account.name) {
+                    cout<<"packet tracking number: "<<pkt.tracking_number<<" "<<"sender: "<<pkt.sender<<" "<<"receiver: "<<pkt.receiver<<" ";
+                    cout<<"content: "<<pkt.content<<" "<<"sent time: "<<pkt.send_time<<" ";
+                    cout<<"received time: "<<pkt.receive_time<<" "<<"status: "<<pkt.status<<endl;
+                }
+            }
+            break;
+        default:
+            cout<<"Invalid query type!"<<endl;
+            break;
+    }
+}
+void User::receive_packet(int tracking_number) {
+    int i;
+    for(i=0;i<all_packets_count;i++){
+        if(packets[i].tracking_number == tracking_number){
+            if(packets[i].status == RECEIVED){
+                cout<<"error:packet already received"<<endl;
                 break;
             }
+            if(packets[i].receiver != account.name){
+                cout<<"error:packet not sent to you"<<endl;
+                break;
+            }
+            packets[i].status=RECEIVED;
+            packets[i].receive_time=get_time();
+            cout<<"receive packet success"<<endl;
+            break;
         }
     }
-    if(select_counts==packets_count){
-        cout<<"all packet received"<<endl;
-    } 
+    if(i==all_packets_count){
+        cout<<"error:packet not found"<<endl;
+    }
 }
 void User::change_password() {
     cout<<"enter new password: ";
@@ -98,7 +143,7 @@ void User::send_packet(){
     cin>>new_pkt.receiver;
     cout<<"enter content: ";
     cin>>new_pkt.content;
-    new_pkt.id=all_packets_count;
+    new_pkt.tracking_number =all_packets_count;
     new_pkt.send_time=get_time();
     new_pkt.receive_time="----";
     new_pkt.status=SENT;
