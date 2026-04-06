@@ -1,4 +1,4 @@
-#include "../include/admin.h"
+#include "admin.h"
 using namespace std;
 void Admin::query_packet(int type,string value){
     switch(type){

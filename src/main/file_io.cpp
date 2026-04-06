@@ -1,4 +1,4 @@
-#include "../include/express.h"
+#include "express.h"
 using namespace std;
 void sys_init() {
     ifstream infile("../doc/accountdata.txt");

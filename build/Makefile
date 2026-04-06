@@ -176,6 +176,30 @@ src/main/admin.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\express_system.dir\build.make CMakeFiles/express_system.dir/src/main/admin.cpp.s
 .PHONY : src/main/admin.cpp.s
 
+src/main/database.obj: src/main/database.cpp.obj
+.PHONY : src/main/database.obj
+
+# target to build an object file
+src/main/database.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\express_system.dir\build.make CMakeFiles/express_system.dir/src/main/database.cpp.obj
+.PHONY : src/main/database.cpp.obj
+
+src/main/database.i: src/main/database.cpp.i
+.PHONY : src/main/database.i
+
+# target to preprocess a source file
+src/main/database.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\express_system.dir\build.make CMakeFiles/express_system.dir/src/main/database.cpp.i
+.PHONY : src/main/database.cpp.i
+
+src/main/database.s: src/main/database.cpp.s
+.PHONY : src/main/database.s
+
+# target to generate assembly for a file
+src/main/database.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\express_system.dir\build.make CMakeFiles/express_system.dir/src/main/database.cpp.s
+.PHONY : src/main/database.cpp.s
+
 src/main/express.obj: src/main/express.cpp.obj
 .PHONY : src/main/express.obj
 
@@ -239,6 +263,9 @@ help:
 	@echo ... src/main/admin.obj
 	@echo ... src/main/admin.i
 	@echo ... src/main/admin.s
+	@echo ... src/main/database.obj
+	@echo ... src/main/database.i
+	@echo ... src/main/database.s
 	@echo ... src/main/express.obj
 	@echo ... src/main/express.i
 	@echo ... src/main/express.s

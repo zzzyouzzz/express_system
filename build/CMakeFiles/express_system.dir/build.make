@@ -101,11 +101,26 @@ CMakeFiles/express_system.dir/src/main/admin.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/express_system.dir/src/main/admin.cpp.s"
 	C:\PROGRA~1\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\c\vsc_pro\express_project\src\main\admin.cpp -o CMakeFiles\express_system.dir\src\main\admin.cpp.s
 
+CMakeFiles/express_system.dir/src/main/database.cpp.obj: CMakeFiles/express_system.dir/flags.make
+CMakeFiles/express_system.dir/src/main/database.cpp.obj: CMakeFiles/express_system.dir/includes_CXX.rsp
+CMakeFiles/express_system.dir/src/main/database.cpp.obj: D:/c/vsc_pro/express_project/src/main/database.cpp
+CMakeFiles/express_system.dir/src/main/database.cpp.obj: CMakeFiles/express_system.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\c\vsc_pro\express_project\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/express_system.dir/src/main/database.cpp.obj"
+	C:\PROGRA~1\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/express_system.dir/src/main/database.cpp.obj -MF CMakeFiles\express_system.dir\src\main\database.cpp.obj.d -o CMakeFiles\express_system.dir\src\main\database.cpp.obj -c D:\c\vsc_pro\express_project\src\main\database.cpp
+
+CMakeFiles/express_system.dir/src/main/database.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/express_system.dir/src/main/database.cpp.i"
+	C:\PROGRA~1\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E D:\c\vsc_pro\express_project\src\main\database.cpp > CMakeFiles\express_system.dir\src\main\database.cpp.i
+
+CMakeFiles/express_system.dir/src/main/database.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/express_system.dir/src/main/database.cpp.s"
+	C:\PROGRA~1\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\c\vsc_pro\express_project\src\main\database.cpp -o CMakeFiles\express_system.dir\src\main\database.cpp.s
+
 CMakeFiles/express_system.dir/src/main/express.cpp.obj: CMakeFiles/express_system.dir/flags.make
 CMakeFiles/express_system.dir/src/main/express.cpp.obj: CMakeFiles/express_system.dir/includes_CXX.rsp
 CMakeFiles/express_system.dir/src/main/express.cpp.obj: D:/c/vsc_pro/express_project/src/main/express.cpp
 CMakeFiles/express_system.dir/src/main/express.cpp.obj: CMakeFiles/express_system.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\c\vsc_pro\express_project\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/express_system.dir/src/main/express.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\c\vsc_pro\express_project\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/express_system.dir/src/main/express.cpp.obj"
 	C:\PROGRA~1\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/express_system.dir/src/main/express.cpp.obj -MF CMakeFiles\express_system.dir\src\main\express.cpp.obj.d -o CMakeFiles\express_system.dir\src\main\express.cpp.obj -c D:\c\vsc_pro\express_project\src\main\express.cpp
 
 CMakeFiles/express_system.dir/src/main/express.cpp.i: cmake_force
@@ -120,7 +135,7 @@ CMakeFiles/express_system.dir/src/main/file_io.cpp.obj: CMakeFiles/express_syste
 CMakeFiles/express_system.dir/src/main/file_io.cpp.obj: CMakeFiles/express_system.dir/includes_CXX.rsp
 CMakeFiles/express_system.dir/src/main/file_io.cpp.obj: D:/c/vsc_pro/express_project/src/main/file_io.cpp
 CMakeFiles/express_system.dir/src/main/file_io.cpp.obj: CMakeFiles/express_system.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\c\vsc_pro\express_project\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/express_system.dir/src/main/file_io.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\c\vsc_pro\express_project\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/express_system.dir/src/main/file_io.cpp.obj"
 	C:\PROGRA~1\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/express_system.dir/src/main/file_io.cpp.obj -MF CMakeFiles\express_system.dir\src\main\file_io.cpp.obj.d -o CMakeFiles\express_system.dir\src\main\file_io.cpp.obj -c D:\c\vsc_pro\express_project\src\main\file_io.cpp
 
 CMakeFiles/express_system.dir/src/main/file_io.cpp.i: cmake_force
@@ -135,25 +150,27 @@ CMakeFiles/express_system.dir/src/main/file_io.cpp.s: cmake_force
 express_system_OBJECTS = \
 "CMakeFiles/express_system.dir/src/main/User.cpp.obj" \
 "CMakeFiles/express_system.dir/src/main/admin.cpp.obj" \
+"CMakeFiles/express_system.dir/src/main/database.cpp.obj" \
 "CMakeFiles/express_system.dir/src/main/express.cpp.obj" \
 "CMakeFiles/express_system.dir/src/main/file_io.cpp.obj"
 
 # External object files for target express_system
 express_system_EXTERNAL_OBJECTS =
 
-express_system.exe: CMakeFiles/express_system.dir/src/main/User.cpp.obj
-express_system.exe: CMakeFiles/express_system.dir/src/main/admin.cpp.obj
-express_system.exe: CMakeFiles/express_system.dir/src/main/express.cpp.obj
-express_system.exe: CMakeFiles/express_system.dir/src/main/file_io.cpp.obj
-express_system.exe: CMakeFiles/express_system.dir/build.make
-express_system.exe: CMakeFiles/express_system.dir/linkLibs.rsp
-express_system.exe: CMakeFiles/express_system.dir/objects1.rsp
-express_system.exe: CMakeFiles/express_system.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=D:\c\vsc_pro\express_project\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable express_system.exe"
+D:/c/vsc_pro/express_project/release/express_system.exe: CMakeFiles/express_system.dir/src/main/User.cpp.obj
+D:/c/vsc_pro/express_project/release/express_system.exe: CMakeFiles/express_system.dir/src/main/admin.cpp.obj
+D:/c/vsc_pro/express_project/release/express_system.exe: CMakeFiles/express_system.dir/src/main/database.cpp.obj
+D:/c/vsc_pro/express_project/release/express_system.exe: CMakeFiles/express_system.dir/src/main/express.cpp.obj
+D:/c/vsc_pro/express_project/release/express_system.exe: CMakeFiles/express_system.dir/src/main/file_io.cpp.obj
+D:/c/vsc_pro/express_project/release/express_system.exe: CMakeFiles/express_system.dir/build.make
+D:/c/vsc_pro/express_project/release/express_system.exe: CMakeFiles/express_system.dir/linkLibs.rsp
+D:/c/vsc_pro/express_project/release/express_system.exe: CMakeFiles/express_system.dir/objects1.rsp
+D:/c/vsc_pro/express_project/release/express_system.exe: CMakeFiles/express_system.dir/link.txt
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=D:\c\vsc_pro\express_project\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable D:\c\vsc_pro\express_project\release\express_system.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\express_system.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
-CMakeFiles/express_system.dir/build: express_system.exe
+CMakeFiles/express_system.dir/build: D:/c/vsc_pro/express_project/release/express_system.exe
 .PHONY : CMakeFiles/express_system.dir/build
 
 CMakeFiles/express_system.dir/clean:

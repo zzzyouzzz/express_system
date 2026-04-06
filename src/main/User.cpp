@@ -1,4 +1,4 @@
-#include "../include/User.h"
+#include "User.h"
 using namespace std;
 void User::query_balance() {
     cout<<"balance: "<<account.balance<<endl;
