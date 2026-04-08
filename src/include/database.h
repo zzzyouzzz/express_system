@@ -37,15 +37,30 @@ class AccountDatabase {
     private:
         map<int, Account> accounts;
         map<string, int> idx_username;
+        string save_filename;
     public:
         AccountDatabase(string filename);
         ~AccountDatabase() {}
-        void add(Account account);
+        bool add(Account account);
         Account* get_by_id(int id);
         Account* get_by_username(string username);
-        void save();
-        void remove(int id);
-        void update(Account account);
+        bool remove(int id);
+        bool update(Account account);
 };
-
+class PacketDatabase {
+    private:
+        map<int, Packet> packets;
+        map<string, int> idx_sender;
+        map<string, int> idx_receiver;
+        string save_filename;
+    public:
+        PacketDatabase(string filename);
+        ~PacketDatabase() {}
+        bool add(Packet packet);
+        Packet* get_by_id(int id);
+        Packet* get_by_sender(string sender);
+        Packet* get_by_receiver(string receiver);
+        bool remove(int id);
+        bool update(Packet packet);
+};
 #endif
