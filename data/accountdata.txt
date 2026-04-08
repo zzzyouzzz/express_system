@@ -1,0 +1,3 @@
+2
+admin 123 xxx 10011 bupt 0 0
+xzd 123 xxx 10011 bupt 95 0

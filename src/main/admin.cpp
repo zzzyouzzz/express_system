@@ -1,70 +1,22 @@
 #include "admin.h"
 using namespace std;
-void Admin::query_packet(int type,string value){
-    switch(type){
-        case 0:
-            for(auto pkt : packets) {
-                cout<<"packet tracking number: "<<pkt.tracking_number<<" "<<"sender: "<<pkt.sender<<" "<<"receiver: "<<pkt.receiver<<" ";
-                cout<<"content: "<<pkt.content<<" "<<"sent time: "<<pkt.send_time<<" ";
-                cout<<"received time: "<<pkt.receive_time<<" "<<"status: "<<pkt.status<<endl;
-            }
-            break;
-        case 1:
-            for(auto pkt : packets) {
-                if(pkt.sender == value) {
-                    cout<<"packet tracking number: "<<pkt.tracking_number<<" "<<"sender: "<<pkt.sender<<" "<<"receiver: "<<pkt.receiver<<" ";
-                    cout<<"content: "<<pkt.content<<" "<<"sent time: "<<pkt.send_time<<" ";
-                    cout<<"received time: "<<pkt.receive_time<<" "<<"status: "<<pkt.status<<endl;
-                }
-            }
-            break;
-        case 2:
-            for(auto pkt : packets) {
-                if(pkt.receiver == value) {
-                    cout<<"packet tracking number: "<<pkt.tracking_number<<" "<<"sender: "<<pkt.sender<<" "<<"receiver: "<<pkt.receiver<<" ";
-                    cout<<"content: "<<pkt.content<<" "<<"sent time: "<<pkt.send_time<<" ";
-                    cout<<"received time: "<<pkt.receive_time<<" "<<"status: "<<pkt.status<<endl;
-                }
-            }
-            break;
-        case 3:
-            for(auto pkt : packets) {
-                if(pkt.send_time == value) {
-                    cout<<"packet tracking number: "<<pkt.tracking_number<<" "<<"sender: "<<pkt.sender<<" "<<"receiver: "<<pkt.receiver<<" ";
-                    cout<<"content: "<<pkt.content<<" "<<"sent time: "<<pkt.send_time<<" ";
-                    cout<<"received time: "<<pkt.receive_time<<" "<<"status: "<<pkt.status<<endl;
-                }
-            }
-            break;
-        case 4:
-            for(auto pkt : packets) {
-                if(pkt.receive_time == value) {
-                    cout<<"packet tracking number: "<<pkt.tracking_number<<" "<<"sender: "<<pkt.sender<<" "<<"receiver: "<<pkt.receiver<<" ";
-                    cout<<"content: "<<pkt.content<<" "<<"sent time: "<<pkt.send_time<<" ";
-                    cout<<"received time: "<<pkt.receive_time<<" "<<"status: "<<pkt.status<<endl;
-                }
-            }
-            break;
-        case 5:{
-            int tn=stoi(value);
-            for(auto pkt : packets) {
-                if(pkt.tracking_number == tn) {
-                    cout<<"packet tracking number: "<<pkt.tracking_number<<" "<<"sender: "<<pkt.sender<<" "<<"receiver: "<<pkt.receiver<<" ";
-                    cout<<"content: "<<pkt.content<<" "<<"sent time: "<<pkt.send_time<<" ";
-                    cout<<"received time: "<<pkt.receive_time<<" "<<"status: "<<pkt.status<<endl;
-                }
-            }
-        }          
-        default:
-            cout<<"Invalid query type!"<<endl;
-            break;
+vector<Packet> Admin::query_packet_by_sender(string sender){
+    vector<Packet> packets = packet_db.get_by_sender(sender);
+    if(packets.empty()){
+        cout<<"No packet found with sender: "<<sender<<endl;
+        return {};  
     }
+    return packets;
+    
 }
-void Admin::query_user(){
-    for(auto user : accounts) {
-        cout<<"username: "<<user.username<<" "<<"name: "<<user.name<<" "<<"phone: "<<user.phone<<" "<<"address: "<<user.address<<" "<<"balance: "<<user.balance<<endl;
+vector<Packet> Admin::query_packet_by_receiver(string receiver){
+    vector<Packet> packets = packet_db.get_by_receiver(receiver);
+    if(packets.empty()){
+        cout<<"No packet found with receiver: "<<receiver<<endl;
+        return {};  
     }
+    return packets;
 }
-string Admin::name(){
+string Admin::get_name(){
     return account.name;
 }

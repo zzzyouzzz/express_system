@@ -1,12 +1,12 @@
 #include "express.h"
 #include "User.h"
 #include "admin.h"
+#include "database.h"
 
 using namespace std;
-int all_packets_count=0;
-int all_accounts_count=0;
-vector<Account> accounts;
-vector<Packet> packets;
+const string config_filename="config.txt";
+int starttime;
+int packet_count=0;
 vector<int> read_packets() {//读取用户输入的包裹号
     vector<int> selected_packets;
     string input;
@@ -31,28 +31,11 @@ string get_time() {//获取当前时间
     struct tm* t = localtime(&now);
     return to_string(t->tm_year + 1900) + "-" + to_string(t->tm_mon + 1) + "-" + to_string(t->tm_mday) + "_" + to_string(t->tm_hour) + ":" + to_string(t->tm_min) + ":" + to_string(t->tm_sec);
 }
-bool is_valid_username(string username) {//检查用户名是否有效
-    for(auto user:accounts){
-        if(user.username==username){
-            return false;
-        }
-    }
-    for (char c : username) {
-        if (!isalnum(c) && c != '_') {
-            return false;
-        }
-    }
-    return true;
-}
-void signup() {
+void signup(AccountDatabase &account_db) {
     Account new_user;
     new_user.type=USER;
     cout<<"Please input your username:"<<endl;
     cin>>new_user.username;
-    while(!is_valid_username(new_user.username)){
-        cout<<"Invalid username! Please input a valid username:"<<endl;
-        cin>>new_user.username;
-    }
     cout<<"Please input your password:"<<endl;
     cin>>new_user.password;
     cout << "Please Compleate your information:" << endl;
@@ -63,22 +46,16 @@ void signup() {
     cout<<"Please input your address:"<<endl;
     cin>>new_user.address;
     new_user.balance=0;
-    accounts.push_back(new_user);
-    all_accounts_count++;
-    cout<<"Signup success!"<<endl;
-}
-bool find_user(string username,Account& user){
-    for (int i = 0;i < all_accounts_count;i++) {
-        if (accounts[i].username == username) {
-            user=accounts[i];
-            return true;
-        }
+    if(account_db.add(new_user)){
+        cout<<"Signup success!"<<endl;
     }
-    return false;
+    else{
+        cout<<"Signup failed!"<<endl;
+    }
 }
-LoginStatus login(Account &user) {
-    Account found_user;
-    if(!find_user(user.username,found_user)){
+LoginStatus login(Account &user,AccountDatabase &account_db) {
+    Account found_user=account_db.get_by_username(user.username);
+    if(found_user.username.empty()){
         return NOT_FOUND;
     }
     if(found_user.password==user.password&&found_user.type==USER){
@@ -110,7 +87,7 @@ void Userloop(User user){
         string query_value;
         switch(choice){
             case 1:
-                user.query_balance();
+                cout<<"Your balance is:"<<user.get_balance()<<endl;
                 break;
             case 2:
                 cout<<"Please input query type:"<<endl;
@@ -121,38 +98,94 @@ void Userloop(User user){
                 cout<<"5.Query by tracking number"<<endl;
                 cout<<"0.Query all packets"<<endl;
                 cin>>query_type>>query_value;
-                user.query_packet(query_type,query_value);
-                break;
-            case 3:
-                cout<<"your unreceived packets:"<<endl;
-                user.query_packet(6,"");
-                cout<<"Please input tracking number to receive:"<<endl;
-                int tracking_number;
-                cin>>tracking_number;
-                user.receive_packet(tracking_number);
+                switch(query_type){
+                    case 1:
+                        {cout<<"Your packets by sender:"<<query_value<<endl;
+                        vector<Packet> packets=user.query_packet_by_sender(query_value);
+                        if(packets.empty()){
+                            cout<<"No packet found!"<<endl;
+                        }
+                        else{
+                            for(Packet packet:packets){
+                                cout<<"Packet found:"<<endl;
+                                cout<<"Tracking number:"<<packet.tracking_number<<endl;
+                                cout<<"Sender:"<<packet.sender<<endl;
+                                cout<<"Receiver:"<<packet.receiver<<endl;
+                                cout<<"Send time:"<<packet.send_time<<endl;
+                                cout<<"Receive time:"<<packet.receive_time<<endl;
+                                cout<<"Status:"<<packet.status<<endl;
+                                cout<<"Content:"<<packet.content<<endl;
+                            }
+                        }
+                        break;}
+                    case 2:
+                        {cout<<"Your packets by receiver:"<<query_value<<endl;
+                        vector<Packet> packets=user.query_packet_by_receiver(query_value);
+                        if(packets.empty()){
+                            cout<<"No packet found!"<<endl;
+                        }
+                        else{
+                            for(Packet packet:packets){
+                                cout<<"Packet found:"<<endl;
+                                cout<<"Tracking number:"<<packet.tracking_number<<endl;
+                                cout<<"Sender:"<<packet.sender<<endl;
+                                cout<<"Receiver:"<<packet.receiver<<endl;
+                                cout<<"Send time:"<<packet.send_time<<endl;
+                                cout<<"Receive time:"<<packet.receive_time<<endl;
+                                cout<<"Status:"<<packet.status<<endl;
+                                cout<<"Content:"<<packet.content<<endl;
+                            }
+                        }
+                        break;}
+                    default:
+                        cout<<"Invalid query type!"<<endl;
+                        break;
+                }
                 break;
             case 4:
-                user.send_packet();
-                break;
+                {Packet pkt;
+                cout<<"Please input your recipient name:"<<endl;
+                cin>>pkt.receiver;
+                cout<<"Please input your packet content:"<<endl;
+                cin>>pkt.content;
+                pkt.status=PacketStatus::SENT;
+                pkt.send_time=get_time();
+                pkt.receive_time="----";
+                pkt.tracking_number=starttime+packet_count;
+                packet_count++;
+                if(user.send_packet(pkt)){
+                    cout<<"Send packet success!"<<endl;
+                }
+                else{
+                    cout<<"Send packet failed!"<<endl;
+                }
+                break;}
             case 5:
-                user.change_password();
-                break;
+                {cout<<"Please input your new password:"<<endl;
+                string new_password;
+                cin>>new_password;
+                user.change_password(new_password);
+                break;}
             case 6:
-                user.recharge();
+                {cout<<"Please input your recharge amount:"<<endl;
+                int amount;
+                cin>>amount;
+                user.recharge(amount);
+                cout<<"Recharge success!"<<endl;
                 break;
             case 7:
-                user.logout();
+                cout<<"Logout success!"<<endl;
                 break;
             default:
                 cout<<"Invalid choice!"<<endl;
-                break;
+                break;}
         }
     }
 }
 void adminloop(Admin admin){
-    cout<<"Welcome "<<admin.name()<<"!"<<endl;
-    cout<<"1.Query packet"<<endl;
-    cout<<"2.Query user"<<endl;
+    cout<<"Welcome "<<admin.get_name()<<"!"<<endl;
+    cout<<"1.Query packet by sender"<<endl;
+    cout<<"2.Query packet by receiver"<<endl;
     cout<<"3.Logout"<<endl;
     int choice=0;
     while(choice!=3){
@@ -160,11 +193,47 @@ void adminloop(Admin admin){
         cin>>choice;
         switch(choice){
             case 1:
-                admin.query_packet(0,"");
-                break;
+                {cout<<"Please input your sender name:"<<endl;
+                string query_value;
+                cin>>query_value;
+                vector<Packet> packets=admin.query_packet_by_sender(query_value);
+                if(packets.empty()){
+                    cout<<"No packet found!"<<endl;
+                }
+                else{
+                    for(Packet packet:packets){
+                        cout<<"Packet found:"<<endl;
+                        cout<<"Tracking number:"<<packet.tracking_number<<endl;
+                        cout<<"Sender:"<<packet.sender<<endl;
+                        cout<<"Receiver:"<<packet.receiver<<endl;
+                        cout<<"Send time:"<<packet.send_time<<endl;
+                        cout<<"Receive time:"<<packet.receive_time<<endl;
+                        cout<<"Status:"<<packet.status<<endl;
+                        cout<<"Content:"<<packet.content<<endl;
+                    }
+                }
+                break;}
             case 2:
-                admin.query_user();
-                break;
+                {cout<<"Please input your receiver name:"<<endl;
+                string query_value;
+                cin>>query_value;
+                vector<Packet> packets=admin.query_packet_by_receiver(query_value);
+                if(packets.empty()){
+                    cout<<"No packet found!"<<endl;
+                }
+                else{
+                    for(Packet packet:packets){
+                        cout<<"Packet found:"<<endl;
+                        cout<<"Tracking number:"<<packet.tracking_number<<endl;
+                        cout<<"Sender:"<<packet.sender<<endl;
+                        cout<<"Receiver:"<<packet.receiver<<endl;
+                        cout<<"Send time:"<<packet.send_time<<endl;
+                        cout<<"Receive time:"<<packet.receive_time<<endl;
+                        cout<<"Status:"<<packet.status<<endl;
+                        cout<<"Content:"<<packet.content<<endl;
+                    }
+                }
+                break;}
             case 3:
                 break;
             default:
@@ -174,8 +243,17 @@ void adminloop(Admin admin){
     }
 }
 int main() {
-    AccountType now_user_type;
-    sys_init();
+    string data_filename,packet_filename;
+    ifstream config_file(config_filename);
+    if(!config_file.is_open()){
+        cout<<"Error: Failed to open file "<<config_filename<<endl;
+        return 1;
+    }
+    config_file>>data_filename>>packet_filename;
+    config_file.close();
+    starttime=time(0);
+    AccountDatabase account_db(data_filename);
+    PacketDatabase packet_db(packet_filename);
     cout << "Hello!" << endl;
     string input;
     Account user;
@@ -184,15 +262,10 @@ int main() {
     while(input!="exit"){
         cout<<"Please input your password:"<<endl;
         cin>>user.password;
-        switch(login(user)){
+        switch(login(user,account_db)){
             case User_LOGIN_SUCCESS:
                 cout<<"Login success!"<<endl;
-                Userloop(User(user));
-                input="exit";
-                break;
-            case Admin_LOGIN_SUCCESS:
-                cout<<"Login success as admin!"<<endl;
-                adminloop(Admin(0,user));
+                Userloop(User(user,packet_db,account_db));
                 input="exit";
                 break;
             case FAIL:
@@ -204,7 +277,7 @@ int main() {
                 cout<<"enter exit to logout."<<endl;
                 cin>>input;
                 if(input=="signup"){
-                    signup();
+                    signup(account_db);
                     cout<<"Please input your username to login again."<<endl;
                     cin>>user.username;
                 }
@@ -215,6 +288,5 @@ int main() {
                 break;
         }
     }
-    save_data();
     return 0;
 }

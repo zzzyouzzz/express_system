@@ -14,8 +14,18 @@ PacketDatabase::PacketDatabase(string filename) {
         file >> packet.tracking_number >> packet.sender >> packet.receiver >> packet.send_time >> packet.receive_time >> status >> packet.content;
         packet.status = (PacketStatus)status;
         packets[packet.tracking_number] = packet;
-        idx_sender[packet.sender] = packet.tracking_number;
-        idx_receiver[packet.receiver] = packet.tracking_number;
+        if(idx_sender.count(packet.sender) == 0){
+            idx_sender[packet.sender] = {packet.tracking_number};
+        }
+        else{
+            idx_sender[packet.sender].push_back(packet.tracking_number);
+        }
+        if(idx_receiver.count(packet.receiver) == 0){
+            idx_receiver[packet.receiver] = {packet.tracking_number};
+        }
+        else{
+            idx_receiver[packet.receiver].push_back(packet.tracking_number);
+        }
     }
     file.close();
     save_filename = filename;
@@ -23,21 +33,39 @@ PacketDatabase::PacketDatabase(string filename) {
 bool PacketDatabase::add(Packet packet) {
     if(packets.count(packet.tracking_number) > 0) return false;
     packets[packet.tracking_number] = packet;
-    idx_sender[packet.sender] = packet.tracking_number;
-    idx_receiver[packet.receiver] = packet.tracking_number;
+    if(idx_sender.count(packet.sender) == 0){
+        idx_sender[packet.sender] = {packet.tracking_number};
+    }
+    else{
+        idx_sender[packet.sender].push_back(packet.tracking_number);
+    }
+    if(idx_receiver.count(packet.receiver) == 0){
+        idx_receiver[packet.receiver] = {packet.tracking_number};
+    }
+    else{
+        idx_receiver[packet.receiver].push_back(packet.tracking_number);
+    }
     return true;
 }
-Packet* PacketDatabase::get_by_id(int id) {
-    if(packets.count(id) == 0) return nullptr;
-    return &packets[id];
+Packet PacketDatabase::get_by_id(int id) {
+    if(packets.count(id) == 0) return Packet();
+    return packets[id];
 }
-Packet* PacketDatabase::get_by_sender(string sender) {
-    if(idx_sender.count(sender) == 0) return nullptr;
-    return &packets[idx_sender[sender]];
+vector<Packet> PacketDatabase::get_by_sender(string sender) {
+    if(idx_sender.count(sender) == 0) return {};
+    vector<Packet> res;
+    for(int id : idx_sender[sender]){
+        res.push_back(packets[id]);
+    }
+    return res;
 }
-Packet* PacketDatabase::get_by_receiver(string receiver) {
-    if(idx_receiver.count(receiver) == 0) return nullptr;
-    return &packets[idx_receiver[receiver]];
+vector<Packet> PacketDatabase::get_by_receiver(string receiver) {
+    if(idx_receiver.count(receiver) == 0) return {};
+    vector<Packet> res;
+    for(int id : idx_receiver[receiver]){
+        res.push_back(packets[id]);
+    }
+    return res;
 }
 bool PacketDatabase::remove(int id) {
     if(packets.count(id) == 0) return false;
@@ -50,10 +78,16 @@ bool PacketDatabase::remove(int id) {
 bool PacketDatabase::update(Packet packet) {
     if(packets.count(packet.tracking_number) == 0) return false;
     Packet old_packet = packets[packet.tracking_number];
-    idx_sender.erase(old_packet.sender);
-    idx_receiver.erase(old_packet.receiver);
-    idx_sender[packet.sender] = packet.tracking_number;
-    idx_receiver[packet.receiver] = packet.tracking_number;
+    if(old_packet.sender!=packet.sender){
+        vector<int> &ids = idx_sender[old_packet.sender];
+        ids.erase(std::remove(ids.begin(), ids.end(), packet.tracking_number), ids.end());
+        idx_sender[packet.sender].push_back(packet.tracking_number);
+    }
+    if(old_packet.receiver!=packet.receiver){
+        vector<int> &ids = idx_receiver[old_packet.receiver];
+        ids.erase(std::remove(ids.begin(), ids.end(), packet.tracking_number), ids.end());
+        idx_receiver[packet.receiver].push_back(packet.tracking_number);
+    } 
     packets[packet.tracking_number] = packet; 
     return true;
 }

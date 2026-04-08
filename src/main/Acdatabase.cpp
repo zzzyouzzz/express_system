@@ -10,42 +10,32 @@ AccountDatabase::AccountDatabase(string filename) {
     for (int i = 0; i < count; i++) {
         Account account;
         int type;
-        file >> account.id >> account.username >> account.password >> account.name >> account.phone >> account.address >> account.balance >> type;
+        file >> account.username >> account.password >> account.name >> account.phone >> account.address >> account.balance >> type;
         account.type = (AccountType)type;
-        accounts[account.id] = account;
-        idx_username[account.username] = account.id;
+        accounts[account.username] = account;
     }
     file.close();
     save_filename = filename;
 }
 bool AccountDatabase::add(Account account) {
-    if(accounts.count(account.id) > 0) return false;
-    accounts[account.id] = account;
-    idx_username[account.username] = account.id;
+    if(accounts.count(account.username) > 0) return false;
+    accounts[account.username] = account;
     return true;
 }
 bool AccountDatabase::update(Account account) {
-    if(accounts.count(account.id) == 0) return false;
-    Account old_account = accounts[account.id];
-    idx_username.erase(old_account.username);
-    idx_username[account.username] = account.id;
-    accounts[account.id] = account; 
+    if(accounts.count(account.username) == 0) return false;
+    accounts[account.username] = account; 
     return true;
 }
-bool AccountDatabase::remove(int id) {
-    if(accounts.count(id) == 0) return false;
-    Account account = accounts[id];
-    idx_username.erase(account.username);
-    accounts.erase(id);
+bool AccountDatabase::remove(string username) {
+    if(accounts.count(username) == 0) return false;
+    Account account = accounts[username];
+    accounts.erase(username);
     return true;
 }
-Account* AccountDatabase::get_by_id(int id) {
-    if(accounts.count(id) == 0) return nullptr;
-    return &accounts[id];
-}
-Account* AccountDatabase::get_by_username(string username) {
-    if(idx_username.count(username) == 0) return nullptr;
-    return &accounts[idx_username[username]];
+Account AccountDatabase::get_by_username(string username) {
+    if(accounts.count(username) == 0) return Account();
+    return accounts[username];
 }
 AccountDatabase::~AccountDatabase() {
     ofstream file(save_filename);
@@ -55,7 +45,7 @@ AccountDatabase::~AccountDatabase() {
     }
     file << accounts.size() << endl;
     for (auto& account : accounts) {
-        file << account.second.id << " " << account.second.username << " " << account.second.password << " " << account.second.name << " " << account.second.phone << " " << account.second.address << " " << account.second.balance << " " << (int)account.second.type << endl;
+        file << account.second.username << " " << account.second.password << " " << account.second.name << " " << account.second.phone << " " << account.second.address << " " << account.second.balance << " " << (int)account.second.type << endl;
     }
     file.close();
 }

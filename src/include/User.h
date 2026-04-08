@@ -2,20 +2,21 @@
 #define USER_H
 #include "express.h"
 using namespace std;
-class User:public IPacketQuery{
+class User{
     private:
-        int userId;
-        Account account;
+        Account &account;
+        PacketDatabase &packet_db;
+        AccountDatabase &account_db;
     public:
-        User( Account account) : account(account) {}
-        void query_balance();
-        void query_packet(int type,string value) override;
-        void receive_packet(int tracking_number);
-        void send_packet();
-        void change_password();
-        void recharge();
-        void logout();
+        User( Account &account,PacketDatabase &packet_db,AccountDatabase &account_db) : account(account),packet_db(packet_db),account_db(account_db) {}
+        int get_balance();
+        Packet query_packet_by_tracking_number(int tracking_number);
+        vector<Packet> query_packet_by_sender(string sender);
+        vector<Packet> query_packet_by_receiver(string receiver);
+        bool receive_packet(int tracking_number);
+        bool send_packet(Packet pkt);
+        void change_password(string new_password);
+        void recharge(int amount);
         string get_name();
 };
-void Userloop(User user);
 #endif

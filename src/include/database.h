@@ -4,7 +4,9 @@
 #include <map>
 #include <string>
 #include <unordered_map>
+#include <vector>
 #include <fstream>
+#include <algorithm>
 using namespace std;
 enum PacketStatus {
     SENT,
@@ -15,7 +17,6 @@ enum AccountType {
     ADMIN
 };
 struct Account{
-    int id;
     string username;
     string password;
     string name;
@@ -35,31 +36,29 @@ struct Packet{
 };
 class AccountDatabase {
     private:
-        map<int, Account> accounts;
-        map<string, int> idx_username;
+        map<string, Account> accounts;
         string save_filename;
     public:
         AccountDatabase(string filename);
-        ~AccountDatabase() {}
+        ~AccountDatabase();
         bool add(Account account);
-        Account* get_by_id(int id);
-        Account* get_by_username(string username);
-        bool remove(int id);
+        Account get_by_username(string username);
+        bool remove(string username);
         bool update(Account account);
 };
 class PacketDatabase {
     private:
         map<int, Packet> packets;
-        map<string, int> idx_sender;
-        map<string, int> idx_receiver;
+        map<string, vector<int>> idx_sender;
+        map<string, vector<int>> idx_receiver;
         string save_filename;
     public:
         PacketDatabase(string filename);
-        ~PacketDatabase() {}
+        ~PacketDatabase();
         bool add(Packet packet);
-        Packet* get_by_id(int id);
-        Packet* get_by_sender(string sender);
-        Packet* get_by_receiver(string receiver);
+        Packet get_by_id(int id);
+        vector<Packet> get_by_sender(string sender);
+        vector<Packet> get_by_receiver(string receiver);
         bool remove(int id);
         bool update(Packet packet);
 };
