@@ -1,5 +1,4 @@
 #include "admin.h"
-using namespace std;
 vector<Packet> Admin::query_packet_by_sender(string sender){
     vector<Packet> packets = packet_db.get_by_sender(sender);
     if(packets.empty()){
@@ -19,4 +18,8 @@ vector<Packet> Admin::query_packet_by_receiver(string receiver){
 }
 string Admin::get_name(){
     return account.name;
+}
+Account Admin::query_account(string username){
+    Account account = account_db.get_by_username(username);
+    return account;
 }

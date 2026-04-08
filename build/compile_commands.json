@@ -25,8 +25,26 @@
 },
 {
   "directory": "D:/c/vsc_pro/express_project/build",
+  "command": "C:\\PROGRA~1\\mingw64\\bin\\G__~1.EXE  @CMakeFiles/express_system.dir/includes_CXX.rsp -g -o CMakeFiles\\express_system.dir\\src\\main\\adminloop.cpp.obj -c D:\\c\\vsc_pro\\express_project\\src\\main\\adminloop.cpp",
+  "file": "D:/c/vsc_pro/express_project/src/main/adminloop.cpp",
+  "output": "CMakeFiles/express_system.dir/src/main/adminloop.cpp.obj"
+},
+{
+  "directory": "D:/c/vsc_pro/express_project/build",
   "command": "C:\\PROGRA~1\\mingw64\\bin\\G__~1.EXE  @CMakeFiles/express_system.dir/includes_CXX.rsp -g -o CMakeFiles\\express_system.dir\\src\\main\\express.cpp.obj -c D:\\c\\vsc_pro\\express_project\\src\\main\\express.cpp",
   "file": "D:/c/vsc_pro/express_project/src/main/express.cpp",
   "output": "CMakeFiles/express_system.dir/src/main/express.cpp.obj"
+},
+{
+  "directory": "D:/c/vsc_pro/express_project/build",
+  "command": "C:\\PROGRA~1\\mingw64\\bin\\G__~1.EXE  @CMakeFiles/express_system.dir/includes_CXX.rsp -g -o CMakeFiles\\express_system.dir\\src\\main\\log_in.cpp.obj -c D:\\c\\vsc_pro\\express_project\\src\\main\\log_in.cpp",
+  "file": "D:/c/vsc_pro/express_project/src/main/log_in.cpp",
+  "output": "CMakeFiles/express_system.dir/src/main/log_in.cpp.obj"
+},
+{
+  "directory": "D:/c/vsc_pro/express_project/build",
+  "command": "C:\\PROGRA~1\\mingw64\\bin\\G__~1.EXE  @CMakeFiles/express_system.dir/includes_CXX.rsp -g -o CMakeFiles\\express_system.dir\\src\\main\\userloop.cpp.obj -c D:\\c\\vsc_pro\\express_project\\src\\main\\userloop.cpp",
+  "file": "D:/c/vsc_pro/express_project/src/main/userloop.cpp",
+  "output": "CMakeFiles/express_system.dir/src/main/userloop.cpp.obj"
 }
 ]

@@ -224,6 +224,30 @@ src/main/admin.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\express_system.dir\build.make CMakeFiles/express_system.dir/src/main/admin.cpp.s
 .PHONY : src/main/admin.cpp.s
 
+src/main/adminloop.obj: src/main/adminloop.cpp.obj
+.PHONY : src/main/adminloop.obj
+
+# target to build an object file
+src/main/adminloop.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\express_system.dir\build.make CMakeFiles/express_system.dir/src/main/adminloop.cpp.obj
+.PHONY : src/main/adminloop.cpp.obj
+
+src/main/adminloop.i: src/main/adminloop.cpp.i
+.PHONY : src/main/adminloop.i
+
+# target to preprocess a source file
+src/main/adminloop.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\express_system.dir\build.make CMakeFiles/express_system.dir/src/main/adminloop.cpp.i
+.PHONY : src/main/adminloop.cpp.i
+
+src/main/adminloop.s: src/main/adminloop.cpp.s
+.PHONY : src/main/adminloop.s
+
+# target to generate assembly for a file
+src/main/adminloop.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\express_system.dir\build.make CMakeFiles/express_system.dir/src/main/adminloop.cpp.s
+.PHONY : src/main/adminloop.cpp.s
+
 src/main/express.obj: src/main/express.cpp.obj
 .PHONY : src/main/express.obj
 
@@ -248,6 +272,54 @@ src/main/express.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\express_system.dir\build.make CMakeFiles/express_system.dir/src/main/express.cpp.s
 .PHONY : src/main/express.cpp.s
 
+src/main/log_in.obj: src/main/log_in.cpp.obj
+.PHONY : src/main/log_in.obj
+
+# target to build an object file
+src/main/log_in.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\express_system.dir\build.make CMakeFiles/express_system.dir/src/main/log_in.cpp.obj
+.PHONY : src/main/log_in.cpp.obj
+
+src/main/log_in.i: src/main/log_in.cpp.i
+.PHONY : src/main/log_in.i
+
+# target to preprocess a source file
+src/main/log_in.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\express_system.dir\build.make CMakeFiles/express_system.dir/src/main/log_in.cpp.i
+.PHONY : src/main/log_in.cpp.i
+
+src/main/log_in.s: src/main/log_in.cpp.s
+.PHONY : src/main/log_in.s
+
+# target to generate assembly for a file
+src/main/log_in.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\express_system.dir\build.make CMakeFiles/express_system.dir/src/main/log_in.cpp.s
+.PHONY : src/main/log_in.cpp.s
+
+src/main/userloop.obj: src/main/userloop.cpp.obj
+.PHONY : src/main/userloop.obj
+
+# target to build an object file
+src/main/userloop.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\express_system.dir\build.make CMakeFiles/express_system.dir/src/main/userloop.cpp.obj
+.PHONY : src/main/userloop.cpp.obj
+
+src/main/userloop.i: src/main/userloop.cpp.i
+.PHONY : src/main/userloop.i
+
+# target to preprocess a source file
+src/main/userloop.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\express_system.dir\build.make CMakeFiles/express_system.dir/src/main/userloop.cpp.i
+.PHONY : src/main/userloop.cpp.i
+
+src/main/userloop.s: src/main/userloop.cpp.s
+.PHONY : src/main/userloop.s
+
+# target to generate assembly for a file
+src/main/userloop.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\express_system.dir\build.make CMakeFiles/express_system.dir/src/main/userloop.cpp.s
+.PHONY : src/main/userloop.cpp.s
+
 # Help Target
 help:
 	@echo The following are some of the valid targets for this Makefile:
@@ -269,9 +341,18 @@ help:
 	@echo ... src/main/admin.obj
 	@echo ... src/main/admin.i
 	@echo ... src/main/admin.s
+	@echo ... src/main/adminloop.obj
+	@echo ... src/main/adminloop.i
+	@echo ... src/main/adminloop.s
 	@echo ... src/main/express.obj
 	@echo ... src/main/express.i
 	@echo ... src/main/express.s
+	@echo ... src/main/log_in.obj
+	@echo ... src/main/log_in.i
+	@echo ... src/main/log_in.s
+	@echo ... src/main/userloop.obj
+	@echo ... src/main/userloop.i
+	@echo ... src/main/userloop.s
 .PHONY : help
 
 

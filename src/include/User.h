@@ -1,7 +1,7 @@
 #ifndef USER_H
 #define USER_H
-#include "express.h"
 using namespace std;
+#include "database.h"
 class User{
     private:
         Account &account;
