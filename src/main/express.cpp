@@ -38,7 +38,15 @@ void print_Packet(vector<Packet> packets) {//打印包裹信息
         cout<<"Receiver:"<<packet.receiver<<endl;
         cout<<"Send time:"<<packet.send_time<<endl;
         cout<<"Receive time:"<<packet.receive_time<<endl;
-        cout<<"Status:"<<packet.status<<endl;
+        cout<<"Status:";
+        switch(packet.status){
+            case SENT:
+                cout<<"SENT"<<endl;
+                break;
+            case RECEIVED:
+                cout<<"RECEIVED"<<endl;
+                break;
+        }
         cout<<"Content:"<<packet.content<<endl;
     }
 }
@@ -48,7 +56,15 @@ void print_Account(Account account) {//打印账户信息
     cout<<"Phone:"<<account.phone<<endl;
     cout<<"Address:"<<account.address<<endl;
     cout<<"Balance:"<<account.balance<<endl;
-    cout<<"Type:"<<account.type<<endl;
+    cout<<"Type:";
+    switch(account.type){
+        case USER:
+            cout<<"USER"<<endl;
+            break;
+        case ADMIN:
+            cout<<"ADMIN"<<endl;
+            break;
+    }
 }
 int main() {
     string data_filename,packet_filename;

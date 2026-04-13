@@ -49,11 +49,43 @@ void Userloop(User user){
                             print_Packet(packets);
                         }
                         break;}
+                    case 3:
+                        {cout<<"Your packets by send_time:"<<query_value<<endl;
+                        vector<Packet> packets=user.query_packet_by_send_time(query_value);
+                        if(packets.empty()){
+                            cout<<"No packet found!"<<endl;
+                        }
+                        else{
+                            print_Packet(packets);
+                        }
+                        break;}
+                    case 4:
+                        {cout<<"Your packets by receive_time:"<<query_value<<endl;
+                        vector<Packet> packets=user.query_packet_by_receive_time(query_value);
+                        if(packets.empty()){
+                            cout<<"No packet found!"<<endl;
+                        }
+                        else{
+                            print_Packet(packets);
+                        }
+                        break;}
                     default:
                         cout<<"Invalid query type!"<<endl;
                         break;
                 }
                 break;}
+            case 3:{
+                cout<<"Please input your tracking number:"<<endl;
+                int tracking_number;
+                cin>>tracking_number;
+                if(user.receive_packet(tracking_number)){
+                    cout<<"Receive packet success!"<<endl;
+                }
+                else{
+                    cout<<"Receive packet failed!"<<endl;
+                }
+                break;
+            }
             case 4:{
                 if(user.get_balance()<5){
                     cout<<"Insufficient balance!"<<endl;

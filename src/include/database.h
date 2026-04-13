@@ -51,6 +51,8 @@ class PacketDatabase {
         map<int, Packet> packets;
         map<string, vector<int>> idx_sender;
         map<string, vector<int>> idx_receiver;
+        map<string, vector<int>> idx_send_time;
+        map<string, vector<int>> idx_receive_time;
         string save_filename;
     public:
         PacketDatabase(string filename);
@@ -59,6 +61,8 @@ class PacketDatabase {
         Packet get_by_id(int id);
         vector<Packet> get_by_sender(string sender);
         vector<Packet> get_by_receiver(string receiver);
+        vector<Packet> get_by_send_time(string send_time);
+        vector<Packet> get_by_receive_time(string receive_time);
         bool remove(int id);
         bool update(Packet packet);
 };

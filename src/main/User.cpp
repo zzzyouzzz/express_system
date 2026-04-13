@@ -42,7 +42,7 @@ vector<Packet> User::query_packet_by_receiver(string receiver) {
 }
 bool User::receive_packet(int tracking_number) {
     Packet pkt = packet_db.get_by_id(tracking_number);
-    if(pkt.receiver != account.name){
+    if(pkt.receiver != account.username){
         cout<<"error:packet not sent to you"<<endl;
         return false;
     }
@@ -55,6 +55,30 @@ bool User::receive_packet(int tracking_number) {
     new_pkt.receive_time = get_time();
     packet_db.update(new_pkt);
     return true;
+}
+vector<Packet> User::query_packet_by_send_time(string send_time) {
+    vector<Packet> packets = packet_db.get_by_send_time(send_time);
+    if(packets.empty()){
+        cout<<"No packet found with send time: "<<send_time<<endl;
+        return packets;
+    }  
+    auto new_end = remove_if(packets.begin(), packets.end(), [this](Packet pkt){
+        return pkt.sender != account.username&&pkt.receiver != account.username;
+    });
+    packets.erase(new_end, packets.end());
+    return packets;
+}
+vector<Packet> User::query_packet_by_receive_time(string receive_time) {
+    vector<Packet> packets = packet_db.get_by_receive_time(receive_time);
+    if(packets.empty()){
+        cout<<"No packet found with receive time: "<<receive_time<<endl;
+        return packets;
+    }
+    auto new_end = remove_if(packets.begin(), packets.end(), [this](Packet pkt){
+        return pkt.sender != account.username&&pkt.receiver != account.username;
+    });
+    packets.erase(new_end, packets.end());   
+    return packets;
 }
 void User::change_password(string new_password) {
     account.password = new_password;
@@ -72,4 +96,5 @@ bool User::send_packet(Packet pkt) {
 string User::get_name(){
     return account.name;
 }
+
 

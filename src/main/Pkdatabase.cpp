@@ -26,6 +26,18 @@ PacketDatabase::PacketDatabase(string filename) {
         else{
             idx_receiver[packet.receiver].push_back(packet.tracking_number);
         }
+        if(idx_send_time.count(packet.send_time) == 0){
+            idx_send_time[packet.send_time] = {packet.tracking_number};
+        }
+        else{
+            idx_send_time[packet.send_time].push_back(packet.tracking_number);
+        }
+        if(idx_receive_time.count(packet.receive_time) == 0){
+            idx_receive_time[packet.receive_time] = {packet.tracking_number};
+        }
+        else{
+            idx_receive_time[packet.receive_time].push_back(packet.tracking_number);
+        }
     }
     file.close();
     save_filename = filename;
@@ -44,6 +56,18 @@ bool PacketDatabase::add(Packet packet) {
     }
     else{
         idx_receiver[packet.receiver].push_back(packet.tracking_number);
+    }
+    if(idx_send_time.count(packet.send_time) == 0){
+        idx_send_time[packet.send_time] = {packet.tracking_number};
+    }
+    else{
+        idx_send_time[packet.send_time].push_back(packet.tracking_number);
+    }
+    if(idx_receive_time.count(packet.receive_time) == 0){
+        idx_receive_time[packet.receive_time] = {packet.tracking_number};
+    }
+    else{
+        idx_receive_time[packet.receive_time].push_back(packet.tracking_number);
     }
     return true;
 }
@@ -67,11 +91,29 @@ vector<Packet> PacketDatabase::get_by_receiver(string receiver) {
     }
     return res;
 }
+vector<Packet> PacketDatabase::get_by_send_time(string send_time) {
+    if(idx_send_time.count(send_time) == 0) return {};
+    vector<Packet> res;
+    for(int id : idx_send_time[send_time]){
+        res.push_back(packets[id]);
+    }
+    return res;
+}
+vector<Packet> PacketDatabase::get_by_receive_time(string receive_time) {
+    if(idx_receive_time.count(receive_time) == 0) return {};
+    vector<Packet> res;
+    for(int id : idx_receive_time[receive_time]){
+        res.push_back(packets[id]);
+    }
+    return res;
+}
 bool PacketDatabase::remove(int id) {
     if(packets.count(id) == 0) return false;
     Packet packet = packets[id];
     idx_sender.erase(packet.sender);
     idx_receiver.erase(packet.receiver);
+    idx_send_time.erase(packet.send_time);
+    idx_receive_time.erase(packet.receive_time);
     packets.erase(id);
     return true;
 }
@@ -88,6 +130,16 @@ bool PacketDatabase::update(Packet packet) {
         ids.erase(std::remove(ids.begin(), ids.end(), packet.tracking_number), ids.end());
         idx_receiver[packet.receiver].push_back(packet.tracking_number);
     } 
+    if(old_packet.send_time!=packet.send_time){
+        vector<int> &ids = idx_send_time[old_packet.send_time];
+        ids.erase(std::remove(ids.begin(), ids.end(), packet.tracking_number), ids.end());
+        idx_send_time[packet.send_time].push_back(packet.tracking_number);
+    }
+    if(old_packet.receive_time!=packet.receive_time){
+        vector<int> &ids = idx_receive_time[old_packet.receive_time];
+        ids.erase(std::remove(ids.begin(), ids.end(), packet.tracking_number), ids.end());
+        idx_receive_time[packet.receive_time].push_back(packet.tracking_number);
+    }
     packets[packet.tracking_number] = packet; 
     return true;
 }
