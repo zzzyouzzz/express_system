@@ -2,21 +2,6 @@
 
 
 
-![快递管理系统 banner](https://picsum.photos/id/231/1200/300)
-
-
-
-![C++ Version](https://img.shields.io/badge/C++-11%2B-blue)
-
-\[
-
-
-
-![Database Support](https://img.shields.io/badge/Database-MySQL%20%7C%20SQLite-green)[https://www.mys](https://www.mysql.com/)[ql.co](https://www.mysql.com/)[m/](https://www.mysql.com/) & [https://www.sql](https://www.sqlite.org/)[ite](https://www.sqlite.org/)[.org/](https://www.sqlite.org/))
-
-
-
-![Architecture](https://img.shields.io/badge/Architecture-3--Tier%20OOP-orange)
 
 ## 项目简介
 
