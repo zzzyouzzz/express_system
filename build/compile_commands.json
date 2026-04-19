@@ -1,50 +1,62 @@
 [
 {
   "directory": "D:/c/vsc_pro/express_project/build",
-  "command": "C:\\PROGRA~1\\mingw64\\bin\\G__~1.EXE  @CMakeFiles/express_system.dir/includes_CXX.rsp -g -o CMakeFiles\\express_system.dir\\src\\main\\Acdatabase.cpp.obj -c D:\\c\\vsc_pro\\express_project\\src\\main\\Acdatabase.cpp",
-  "file": "D:/c/vsc_pro/express_project/src/main/Acdatabase.cpp",
-  "output": "CMakeFiles/express_system.dir/src/main/Acdatabase.cpp.obj"
+  "command": "C:\\PROGRA~1\\mingw64\\bin\\G__~1.EXE  @CMakeFiles/express_system.dir/includes_CXX.rsp -g -o CMakeFiles\\express_system.dir\\src\\cli\\ConsoleUI.cpp.obj -c D:\\c\\vsc_pro\\express_project\\src\\cli\\ConsoleUI.cpp",
+  "file": "D:/c/vsc_pro/express_project/src/cli/ConsoleUI.cpp",
+  "output": "CMakeFiles/express_system.dir/src/cli/ConsoleUI.cpp.obj"
 },
 {
   "directory": "D:/c/vsc_pro/express_project/build",
-  "command": "C:\\PROGRA~1\\mingw64\\bin\\G__~1.EXE  @CMakeFiles/express_system.dir/includes_CXX.rsp -g -o CMakeFiles\\express_system.dir\\src\\main\\Pkdatabase.cpp.obj -c D:\\c\\vsc_pro\\express_project\\src\\main\\Pkdatabase.cpp",
-  "file": "D:/c/vsc_pro/express_project/src/main/Pkdatabase.cpp",
-  "output": "CMakeFiles/express_system.dir/src/main/Pkdatabase.cpp.obj"
+  "command": "C:\\PROGRA~1\\mingw64\\bin\\G__~1.EXE  @CMakeFiles/express_system.dir/includes_CXX.rsp -g -o CMakeFiles\\express_system.dir\\src\\cli\\InputHelper.cpp.obj -c D:\\c\\vsc_pro\\express_project\\src\\cli\\InputHelper.cpp",
+  "file": "D:/c/vsc_pro/express_project/src/cli/InputHelper.cpp",
+  "output": "CMakeFiles/express_system.dir/src/cli/InputHelper.cpp.obj"
 },
 {
   "directory": "D:/c/vsc_pro/express_project/build",
-  "command": "C:\\PROGRA~1\\mingw64\\bin\\G__~1.EXE  @CMakeFiles/express_system.dir/includes_CXX.rsp -g -o CMakeFiles\\express_system.dir\\src\\main\\User.cpp.obj -c D:\\c\\vsc_pro\\express_project\\src\\main\\User.cpp",
-  "file": "D:/c/vsc_pro/express_project/src/main/User.cpp",
-  "output": "CMakeFiles/express_system.dir/src/main/User.cpp.obj"
+  "command": "C:\\PROGRA~1\\mingw64\\bin\\G__~1.EXE  @CMakeFiles/express_system.dir/includes_CXX.rsp -g -o CMakeFiles\\express_system.dir\\src\\dao\\dao.cpp.obj -c D:\\c\\vsc_pro\\express_project\\src\\dao\\dao.cpp",
+  "file": "D:/c/vsc_pro/express_project/src/dao/dao.cpp",
+  "output": "CMakeFiles/express_system.dir/src/dao/dao.cpp.obj"
 },
 {
   "directory": "D:/c/vsc_pro/express_project/build",
-  "command": "C:\\PROGRA~1\\mingw64\\bin\\G__~1.EXE  @CMakeFiles/express_system.dir/includes_CXX.rsp -g -o CMakeFiles\\express_system.dir\\src\\main\\admin.cpp.obj -c D:\\c\\vsc_pro\\express_project\\src\\main\\admin.cpp",
-  "file": "D:/c/vsc_pro/express_project/src/main/admin.cpp",
-  "output": "CMakeFiles/express_system.dir/src/main/admin.cpp.obj"
+  "command": "C:\\PROGRA~1\\mingw64\\bin\\G__~1.EXE  @CMakeFiles/express_system.dir/includes_CXX.rsp -g -o CMakeFiles\\express_system.dir\\src\\dao\\database.cpp.obj -c D:\\c\\vsc_pro\\express_project\\src\\dao\\database.cpp",
+  "file": "D:/c/vsc_pro/express_project/src/dao/database.cpp",
+  "output": "CMakeFiles/express_system.dir/src/dao/database.cpp.obj"
 },
 {
   "directory": "D:/c/vsc_pro/express_project/build",
-  "command": "C:\\PROGRA~1\\mingw64\\bin\\G__~1.EXE  @CMakeFiles/express_system.dir/includes_CXX.rsp -g -o CMakeFiles\\express_system.dir\\src\\main\\adminloop.cpp.obj -c D:\\c\\vsc_pro\\express_project\\src\\main\\adminloop.cpp",
-  "file": "D:/c/vsc_pro/express_project/src/main/adminloop.cpp",
-  "output": "CMakeFiles/express_system.dir/src/main/adminloop.cpp.obj"
+  "command": "C:\\PROGRA~1\\mingw64\\bin\\G__~1.EXE  @CMakeFiles/express_system.dir/includes_CXX.rsp -g -o CMakeFiles\\express_system.dir\\src\\main.cpp.obj -c D:\\c\\vsc_pro\\express_project\\src\\main.cpp",
+  "file": "D:/c/vsc_pro/express_project/src/main.cpp",
+  "output": "CMakeFiles/express_system.dir/src/main.cpp.obj"
 },
 {
   "directory": "D:/c/vsc_pro/express_project/build",
-  "command": "C:\\PROGRA~1\\mingw64\\bin\\G__~1.EXE  @CMakeFiles/express_system.dir/includes_CXX.rsp -g -o CMakeFiles\\express_system.dir\\src\\main\\express.cpp.obj -c D:\\c\\vsc_pro\\express_project\\src\\main\\express.cpp",
-  "file": "D:/c/vsc_pro/express_project/src/main/express.cpp",
-  "output": "CMakeFiles/express_system.dir/src/main/express.cpp.obj"
+  "command": "C:\\PROGRA~1\\mingw64\\bin\\G__~1.EXE  @CMakeFiles/express_system.dir/includes_CXX.rsp -g -o CMakeFiles\\express_system.dir\\src\\service\\AccountService.cpp.obj -c D:\\c\\vsc_pro\\express_project\\src\\service\\AccountService.cpp",
+  "file": "D:/c/vsc_pro/express_project/src/service/AccountService.cpp",
+  "output": "CMakeFiles/express_system.dir/src/service/AccountService.cpp.obj"
 },
 {
   "directory": "D:/c/vsc_pro/express_project/build",
-  "command": "C:\\PROGRA~1\\mingw64\\bin\\G__~1.EXE  @CMakeFiles/express_system.dir/includes_CXX.rsp -g -o CMakeFiles\\express_system.dir\\src\\main\\log_in.cpp.obj -c D:\\c\\vsc_pro\\express_project\\src\\main\\log_in.cpp",
-  "file": "D:/c/vsc_pro/express_project/src/main/log_in.cpp",
-  "output": "CMakeFiles/express_system.dir/src/main/log_in.cpp.obj"
+  "command": "C:\\PROGRA~1\\mingw64\\bin\\G__~1.EXE  @CMakeFiles/express_system.dir/includes_CXX.rsp -g -o CMakeFiles\\express_system.dir\\src\\service\\Admin.cpp.obj -c D:\\c\\vsc_pro\\express_project\\src\\service\\Admin.cpp",
+  "file": "D:/c/vsc_pro/express_project/src/service/Admin.cpp",
+  "output": "CMakeFiles/express_system.dir/src/service/Admin.cpp.obj"
 },
 {
   "directory": "D:/c/vsc_pro/express_project/build",
-  "command": "C:\\PROGRA~1\\mingw64\\bin\\G__~1.EXE  @CMakeFiles/express_system.dir/includes_CXX.rsp -g -o CMakeFiles\\express_system.dir\\src\\main\\userloop.cpp.obj -c D:\\c\\vsc_pro\\express_project\\src\\main\\userloop.cpp",
-  "file": "D:/c/vsc_pro/express_project/src/main/userloop.cpp",
-  "output": "CMakeFiles/express_system.dir/src/main/userloop.cpp.obj"
+  "command": "C:\\PROGRA~1\\mingw64\\bin\\G__~1.EXE  @CMakeFiles/express_system.dir/includes_CXX.rsp -g -o CMakeFiles\\express_system.dir\\src\\service\\Courier.cpp.obj -c D:\\c\\vsc_pro\\express_project\\src\\service\\Courier.cpp",
+  "file": "D:/c/vsc_pro/express_project/src/service/Courier.cpp",
+  "output": "CMakeFiles/express_system.dir/src/service/Courier.cpp.obj"
+},
+{
+  "directory": "D:/c/vsc_pro/express_project/build",
+  "command": "C:\\PROGRA~1\\mingw64\\bin\\G__~1.EXE  @CMakeFiles/express_system.dir/includes_CXX.rsp -g -o CMakeFiles\\express_system.dir\\src\\service\\User.cpp.obj -c D:\\c\\vsc_pro\\express_project\\src\\service\\User.cpp",
+  "file": "D:/c/vsc_pro/express_project/src/service/User.cpp",
+  "output": "CMakeFiles/express_system.dir/src/service/User.cpp.obj"
+},
+{
+  "directory": "D:/c/vsc_pro/express_project/build",
+  "command": "C:\\PROGRA~1\\mingw64\\bin\\G__~1.EXE  @CMakeFiles/express_system.dir/includes_CXX.rsp -g -o CMakeFiles\\express_system.dir\\src\\service\\time.cpp.obj -c D:\\c\\vsc_pro\\express_project\\src\\service\\time.cpp",
+  "file": "D:/c/vsc_pro/express_project/src/service/time.cpp",
+  "output": "CMakeFiles/express_system.dir/src/service/time.cpp.obj"
 }
 ]

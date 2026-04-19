@@ -3,8 +3,8 @@ project(express_system)
 
 set(ROOT_DIR ${CMAKE_SOURCE_DIR})
 set(SRC_DIR ${ROOT_DIR}/src)
-set(INCLUDE_DIR ${SRC_DIR}/include)
-set(MAIN_DIR ${SRC_DIR}/main)
+set(INCLUDE_DIR ${SRC_DIR})
+set(MAIN_DIR ${SRC_DIR})
 
 include_directories(${INCLUDE_DIR})
 file(GLOB_RECURSE SOURCES ${MAIN_DIR}/*.cpp)
