@@ -119,11 +119,11 @@
 | 字段名          | 类型            | 约束        | 说明                            |
 | ------------ | ------------- | --------- | ----------------------------- |
 | username     | string        | 主键、自增     | 唯一账户 ID（登录用户名）            |
-| password     | VARCHAR(50)   | 非空        | 登录密码（建议用 MD5 加密存储）            |
-| name   | VARCHAR(50)   | 非空        | 真实姓名                          |
-| phone        | VARCHAR(20)   | 非空、唯一     | 手机号                           |
-| address      | VARCHAR(200)  | 可空        | 收货地址（仅普通用户有效）                 |
-| balance      | DECIMAL(10,2) | 默认 0      | 账户余额（用于支付快递费等场景）              |
+| password     | string        | 非空        | 登录密码（建议用 MD5 加密存储）            |
+| name         | string        | 非空        | 真实姓名                          |
+| phone        | string        | 非空、唯一     | 手机号                           |
+| address      | string        | 可空        | 收货地址（仅普通用户有效）                 |
+| balance      | unsigned int  | 默认 0      | 账户余额（用于支付快递费等场景）              |
 | role         | TINYINT       | 非空        | 角色类型：1 - 管理员 2 - 快递员 3 - 普通用户 |
 
 #### 2. 快递包裹表（express\_package）
@@ -132,15 +132,15 @@
 
 | 字段名               | 类型           | 约束        | 说明                                   |
 | ----------------- | ------------ | --------- | ------------------------------------ |
-| tracking\_num       | VARCHAR(50)  | 主键        | 唯一包裹编号（系统生成）                         |
+| tracking\_num     | int          | 主键        | 唯一包裹编号（系统生成）                         |
 | goods\_type       | TINYINT      | 非空        | 物品类型：1 - 普通 2 - 易碎 3 - 图书            |
-| goods\_content    | VARCHAR(200) | 非空        | 物品内容描述                               |
-| sender           | VARCHAR(50)  | 非空        | 寄送人姓名                                |
-| send\_time        | DATETIME     | 非空、默认当前时间 | 寄件时间                                 |
-| receiver           | VARCHAR(50)  | 非空        | 接收人姓名                                |
+| goods\_content    | string       | 非空        | 物品内容描述                               |
+| sender            | string       | 非空        | 寄送人姓名                                |
+| send\_time        | string       | 非空、默认当前时间 | 寄件时间                                 |
+| receiver          | string       | 非空        | 接收人姓名                                |
 | express\_status   | TINYINT      | 非空、默认 1   | 包裹状态：1 - 待揽收 2 - 已揽收 3 - 运输中 4 - 已签收 |
-| receive\_time     | DATETIME     | 可空        | 签收时间（状态更新为 4 时赋值）                    |
-| courier\_id        | VARCHAR(50)  | 可空        | 快递员用户名（状态更新为 2 时赋值）                    |
+| receive\_time     | string       | 可空        | 签收时间（状态更新为 4 时赋值）                    |
+| courier\_id       | string       | 可空        | 快递员用户名（状态更新为 2 时赋值）                    |
 
 ## 交互流程
 
